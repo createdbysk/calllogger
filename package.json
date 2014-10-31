@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/satvidh/calllogger/issues"
   },
-  "homepage": "https://github.com/satvidh/calllogger"
+  "homepage": "https://github.com/satvidh/calllogger",
+  "devDependencies": {
+    "mocha": "^2.0.1"
+  }
 }
