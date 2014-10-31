@@ -1,0 +1,26 @@
+{
+  "name": "calllogger",
+  "version": "0.0.1",
+  "description": "Logs all dependency injected calls.",
+  "main": "calllogger.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:satvidh/calllogger.git"
+  },
+  "keywords": [
+    "log",
+    "nodejs",
+    "requirejs",
+    "dependency",
+    "injection"
+  ],
+  "author": "Satish Kumar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/satvidh/calllogger/issues"
+  },
+  "homepage": "https://github.com/satvidh/calllogger"
+}
