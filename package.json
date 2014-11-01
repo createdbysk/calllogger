@@ -24,6 +24,8 @@
   },
   "homepage": "https://github.com/satvidh/calllogger",
   "devDependencies": {
-    "mocha": "^2.0.1"
+    "mocha": "^2.0.1",
+    "sinon": "^1.11.1",
+    "expect.js": "^0.3.1"
   }
 }
