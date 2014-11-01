@@ -1,13 +1,13 @@
 describe('callLogger', function () {
-    var callLogger;
-    var sinon;
-    var testFunction;
-    var expectedReturnValue;
-    var expect;
-    var logger;
-    var consoleLogSpy;
+    'use strict';
+    var callLogger,
+        sinon,
+        testFunction,
+        expectedReturnValue,
+        expect,
+        logger,
+        consoleLogSpy;
     beforeEach(function (done) {
-        'use strict';
         callLogger = require('../callLogger');
         sinon = require("sinon");
         expect = require('expect.js');
@@ -23,15 +23,42 @@ describe('callLogger', function () {
         consoleLogSpy.restore();
         done();
     });
-    it('should call function under test.', function (done) {
-        var returnValue = callLogger(testFunction);
-        sinon.assert.calledOnce(testFunction);
-        expect(returnValue).to.be(expectedReturnValue);
+    it('should return a function.', function (done) {
+        var loggedFunction = callLogger(testFunction);
+        expect(loggedFunction).to.be.a('function');
         done();
     });
-    it('should not call the default logger, which is console.log, with no configuration.', function (done) {
-        var returnValue = callLogger(testFunction);
-        sinon.assert.notCalled(consoleLogSpy);
-        done();
+    describe('returned function', function () {
+        var loggedFunction;
+        beforeEach(function (done) {
+            loggedFunction = callLogger(testFunction);
+            done();
+        });
+        it('should call function under test when returned function is called.', function (done) {
+            var returnValue = loggedFunction();
+            sinon.assert.calledOnce(testFunction);
+            expect(returnValue).to.be(expectedReturnValue);
+            done();
+        });
+        it('should not call the default logger, which is console.log, with no configuration.', function (done) {
+            loggedFunction();
+            sinon.assert.notCalled(consoleLogSpy);
+            done();
+        });
+    });
+
+    describe('with logging enabled in the configuration', function () {
+        beforeEach(function (done) {
+            done();
+        });
+        it('should call the default logger, which is console.log.', function (done) {
+            callLogger.config({
+                enabled : true
+            });
+            var loggedFunction = callLogger(testFunction);
+            var returnValue = loggedFunction();
+            sinon.assert.calledOnce(consoleLogSpy);
+            done();
+        });        
     });
 });
